@@ -1,0 +1,21 @@
+#container{
+  display: none;
+  position: absolute;
+  height: 300px;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+}
+
+#shade{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+#mainCont{
+  margin-top: 80px;
+}

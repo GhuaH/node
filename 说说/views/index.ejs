@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container" id="container">
+      <form class="form-signin">
+        <h2 class="form-signin-heading">注册</h2>
+        <div class="form-group">
+          <label for="inputEmail" class="sr-only">用户名</label>
+          <input type="email" id="inputName" class="form-control" placeholder="用户名" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword" class="sr-only">密码</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+        </div>
+
+        <div class="form-group">
+          <label for="inputPassword" class="sr-only">再次输入密码</label>
+          <input type="password" id="reInputPassword" class="form-control" placeholder="再次输入密码" required>
+        </div>
+        
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me" id="agree"> 已同意所有条款
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="registUser">注册</button>
+      </form>
+    </div>
+
+
+    <div id="shade"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">说说</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">首页</a></li>
+            <li class="" id="myPage"><a>我的主页</a></li>
+          </ul>
+          <% if(name){ %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><h4 class="text-primary" id="userName"><%= name%></h4></li>
+              <li><a href="/quit">注销</a></li>
+            </ul>
+          <% } else{%>
+
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="用户名" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="密码" class="form-control" id="password">
+            </div>
+            <button type="button" class="btn btn-success" id="btnLogin">登录</button>
+            <button type="button" class="btn btn-default" id="btnRegist">注册</button>
+          </form>
+          <% } %>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="container theme-showcase" role="main" id="mainCont">
+      <div id="contentBox">
+        <% for(var i = size-1 ; i >= 0 ; i --) { %>
+        <% if(tips[i]){ %>
+        <blockquote>
+          <h3 class="text-success"><%=tips[i].name %></h3>
+          <p><%=tips[i].content %></p>
+          <footer><%=tips[i].time %></footer>
+          <hr>
+        </blockquote>
+        <% }} %>
+      </div>
+    </div>
+    
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+      
+    </script>
+  </body>
+</html>

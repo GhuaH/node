@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">说说</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">首页</a></li>
+            <li class="" id="myPage"><a>我的主页</a></li>
+          </ul>
+          <% if(name){ %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><h4 class="text-primary" id="userName"><%= name%></h4></li>
+              <li><a href="/quit">注销</a></li>
+            </ul>
+          <% } else{%>
+
+          <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="用户名" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="密码" class="form-control" id="password">
+            </div>
+            <button type="button" class="btn btn-success" id="btnLogin">登录</button>
+            <button type="button" class="btn btn-default" id="btnRegist">注册</button>
+          </form>
+          <% } %>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main" id="mainCont">
+      <div class="jumbotron">
+        <form action="http://127.0.0.1:3000/add" method="post" class="form-horizontal"> 
+          <div class="form-group">
+            <label for="content" class="col-md-2 control-label">留言</label>
+            <div class="col-md-8">
+              <textarea class="form-control" id="content" name="cont"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-8 col-md-offset-2">
+              <button type="submit" class="btn btn-primary" id="submit">提交</button>
+            </div>
+          </div>
+        </form>
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li>
+              <a  aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% for(var i = 1 ; i <= page ; i ++) { %>
+            <li class="pageChange"><a><%= i %></a></li>
+            <% } %>
+            <li>
+              <a  aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div id="contentBox">
+          <% for(var i = size-1 ; i >= 0 ; i --) { %>
+          <% if(tips[i]){ %>
+          <blockquote>
+            <h3 class="text-success"><%=tips[i].name %></h3>
+            <p id="cont"><%=tips[i].content %></p>
+            <footer><%=tips[i].time %></footer>
+            <p class="text-danger text-right delete">删除</p>
+            <hr>
+          </blockquote>
+          <% }} %>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/mian.js"></script>
+    <script>
+      $(function(){
+        // $("#submit").click(function(){
+        //   $.post("/post",{name:$("#name").value,content:$("#content").value,time: new Date()},function(data){
+        //     console.log(data);
+
+        //  })
+        // })
+
+
+
+        $(".pagination").delegate("li.pageChange","click",function(){
+          window.location = "/page/" + $(this).text();
+          // $.get("http://127.0.0.1:3000/"+ $(this).text() , function(data){
+          //   console.log(data);
+          // })
+        })
+
+        $("blockquote").delegate("p.delete","click",function(){
+          // $.get("http://127.0.0.1:3000/delete/"+ $(this).parent().children("h3").text(),function(data){
+          //   console.log(data);
+          // })
+          window.location = "/delete/" + $("#cont").text();
+        })
+
+      })
+    </script>
+  </body>
+</html>
